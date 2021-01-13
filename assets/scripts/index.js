@@ -74,7 +74,7 @@ function startGame() {
                 for (let i = 1; i <= (deathTime - preInfectTime) * infCoef; i++) {
                     setTimeout(() => {
                         if (men[randomIndex].style.backgroundColor === 'red') getSickRandMan();
-                    }, (1 / infCoef * i) * dayTime);
+                    }, (1 / infCoef * i * Math.random()) * dayTime);
                 }
             }
         }

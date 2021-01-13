@@ -22,7 +22,7 @@ function startGame() {
     let dayTime = 1000;
     let deathCounter = 0;
     let infCoef = 0.2;
-    let startInfCount = 1;
+    let startInfCount = 10;
 
     for (let i = 0; i < startInfCount; i++){
         getSickRandMan();

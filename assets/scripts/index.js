@@ -1,5 +1,5 @@
 let avaCounter = 0;
-
+let f = true;
 setTimeout(()=>{
     let ava = document.getElementById('p-ava')
     ava.addEventListener('click', avaOnClick);
@@ -8,8 +8,9 @@ setTimeout(()=>{
 function avaOnClick() {
     avaCounter++;
     setTimeout(()=>avaCounter--, 2000);
-    if (avaCounter > 5) {
+    if (avaCounter > 5 && f) {
         startGame();
+        f = false;
     }
 }
 
@@ -21,7 +22,7 @@ function startGame() {
     let dayTime = 1000;
     let deathCounter = 0;
     let infCoef = 0.2;
-    let startInfCount = 10;
+    let startInfCount = 1;
 
     for (let i = 0; i < startInfCount; i++){
         getSickRandMan();
@@ -51,8 +52,7 @@ function startGame() {
                         men[randomIndex].style.backgroundColor = 'white';
                         infCount--;
                         if (infCount === 0) {
-                            alert('The infection has been stopped\n' +
-                                `We lost ${deathCounter} people`);
+                            endGame(deathCounter);
                         }
                     }
                 }, {once: true});
@@ -62,8 +62,7 @@ function startGame() {
                         infCount--;
                         deathCounter++;
                         if (infCount === 0) {
-                            alert('The infection has been stopped\n' +
-                                `We lost ${deathCounter} people`);
+                            endGame(deathCounter);
                         }
                         infCoef = 0.25 * (1 - deathCounter / men.length);
                     }
@@ -92,7 +91,19 @@ function startGame() {
         return men;
     }
 }
-
+function endGame(deathCount) {
+    alert('The infection has been stopped\n' +
+        `We lost ${deathCount} people`);
+    let resume = document.getElementsByTagName('article')[0];
+    resume.style.visibility = 'visible';
+    let game = document.getElementById('game');
+    game.style.height = '100%';
+    if (deathCount <100) {
+        game.style.backgroundColor = 'pink';
+    } else {
+        game.style.backgroundColor = 'black';
+    }
+}
 function createElement({ tagName, className, attributes = {} }) {
     const element = document.createElement(tagName);
 

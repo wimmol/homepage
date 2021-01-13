@@ -46,12 +46,10 @@ function startGame() {
                 men[randomIndex].style.backgroundColor = 'red';
                 menMask[randomIndex] = true;
                 infCount++;
-                console.log(infCount);
                 men[randomIndex].addEventListener('click', () => {
                     if (men[randomIndex].style.backgroundColor === 'red') {
                         men[randomIndex].style.backgroundColor = 'white';
                         infCount--;
-                        console.log(infCount);
                         if (infCount === 0) {
                             alert('The infection has been stopped\n' +
                                 `We lost ${deathCounter} people`);
@@ -62,7 +60,6 @@ function startGame() {
                     if (men[randomIndex].style.backgroundColor === 'red') {
                         men[randomIndex].style.backgroundColor = 'black';
                         infCount--;
-                        console.log(infCount);
                         deathCounter++;
                         if (infCount === 0) {
                             alert('The infection has been stopped\n' +
